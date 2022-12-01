@@ -20,16 +20,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_191629) do
   create_table "products", force: :cascade do |t|
     t.integer "price"
     t.string "brand"
-    t.integer "order_id", null: false
     t.integer "product_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "description"
-    t.index ["order_id"], name: "index_products_on_order_id"
+    t.string "image_link"
     t.index ["product_type_id"], name: "index_products_on_product_type_id"
   end
 
-  add_foreign_key "products", "orders"
   add_foreign_key "products", "product_types"
 end

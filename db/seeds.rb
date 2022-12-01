@@ -17,7 +17,8 @@ products.each do |product|
         name: product["name"],
         description: product["description"],
         price: product["price"],
-        brand: product["brand"]
+        brand: product["brand"],
+        image_link: product["image_link"]
       )
       i+=1
   end
