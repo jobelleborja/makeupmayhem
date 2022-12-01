@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Makeupmayhem</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <title>MM 2022</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body>
+<div class="jumbotron text-center">
+  <h1>Makeup Mayhem</h1>
+  <p>Welcome to your cosmetic journey.</p>
+</div>
+<nav>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+</nav>
+<%= form_with(url: search_products_path, method: :get, local: true) do %>
+  <p>Which Product Would You Like To Find?</p>
+  <%= text_field_tag(:words, nil, class: "input", placeholder: "Product Name Here!") %>
+  <%= submit_tag("Search", class: "button is-primary") %>
+<% end %>
     <%= yield %>
   </body>
 </html>
