@@ -1,21 +1,29 @@
 require "open-uri"
-Products.destroy_all
-Product_Type.destroy_all
-Orders.destroy_all
-Users.destroy_all
+Product.destroy_all
+ProductType.destroy_all
 
-products = JSON.parse(URI.open("https://makeup-api.herokuapp.com/api/v1/products.json").read)
+file = File.read('db/makeup.json')
+products = JSON.parse(file)
 
-# puts villagers["wol12"]["id"]
 i = 0;
 products.each do |product|
   if i < 100
-    gender = Gender.find_or_create_by(title: product["product_type"])
-      create_product= product_type.products.create(
-        id: product["id"],
-        title: product["name"]
+    product_type = ProductType.find_or_create_by(
+      product_type: product["product_type"]
+    )
+
+    if product_type && product_type.valid?
+        create_product = product_type.products.create(
+        name: product["name"],
+        description: product["description"],
+        price: product["price"],
+        brand: product["brand"]
       )
       i+=1
   end
 end
+end
+
+puts "#{Product.count} products"
+puts "#{ProductType.count} types"
 
