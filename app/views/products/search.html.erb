@@ -1,0 +1,11 @@
+<h2>Here are your results:</h2>
+<ol>
+<%if @products.size != 0%>
+  <% @products.each do |product|%>
+  <li><%= link_to product.name, product%></li>
+  <% end %>
+
+<%else%>
+  <li>No search results found, please try again.</li>
+<%end%>
+</ol>
