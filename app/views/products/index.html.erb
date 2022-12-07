@@ -1,5 +1,8 @@
-<ol>
+
 <% @products.each do |product|%>
-<ul><%= link_to product.name, product%></ul>
+<%= product.brand%>
+<ul><img src="<%=product.image_link%>" width="100px" onerror="this.src='https://www.schoolonlineuniversity.com/uploads/thumbnails/course_thumbnails/16.jpg'">
+<%= link_to product.name, product%>
+<span>$</span><%=product.price%></ul>
 <% end %>
 </ol>
