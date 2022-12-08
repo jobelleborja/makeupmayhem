@@ -6,4 +6,6 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :brand, presence: true
   validates :image_link, presence: true
+
+  paginates_per 10
 end

@@ -3,8 +3,10 @@ Product.destroy_all
 ProductType.destroy_all
 AdminUser.destroy_all
 
-file = File.read('db/makeup.json')
-products = JSON.parse(file)
+# file = File.read('db/makeup.json')
+# products = JSON.parse(file)
+
+products = JSON.parse(URI.open("https://makeup-api.herokuapp.com/api/v1/products.json").read)
 
 i = 0;
 products.each do |product|

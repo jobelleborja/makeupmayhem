@@ -1,8 +1,8 @@
-
+<h2>Featured Items: Colourpop</h2>
+<%= paginate @products %>
 <% @products.each do |product|%>
-<%= product.brand%>
 <ul><img src="<%=product.image_link%>" width="100px" onerror="this.src='https://www.schoolonlineuniversity.com/uploads/thumbnails/course_thumbnails/16.jpg'">
 <%= link_to product.name, product%>
-<span>$</span><%=product.price%></ul>
+<span>$</span><%=product.price%><span>.00</span></ul>
 <% end %>
 </ol>

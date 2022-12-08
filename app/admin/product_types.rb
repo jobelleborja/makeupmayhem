@@ -5,7 +5,7 @@ ActiveAdmin.register ProductType do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :product_type
+permit_params :product_type
   #
   # or
   #
@@ -14,5 +14,5 @@ ActiveAdmin.register ProductType do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
 end

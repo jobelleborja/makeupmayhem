@@ -32,6 +32,10 @@ gem 'activeadmin'
 # Plus integrations with:
 gem 'devise'
 
+gem 'kaminari'
+
+gem 'faker'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
