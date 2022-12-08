@@ -1,6 +1,7 @@
 require "open-uri"
 Product.destroy_all
 ProductType.destroy_all
+AdminUser.destroy_all
 
 file = File.read('db/makeup.json')
 products = JSON.parse(file)
@@ -28,3 +29,7 @@ end
 puts "#{Product.count} products"
 puts "#{ProductType.count} types"
 
+if Rails.env.development?
+	AdminUser.create!(email: "admin@example.com", password: "password",
+			              password_confirmation: "password")
+end
