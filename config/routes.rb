@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   root "products#index"
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 
   get "/products", to: "products#index"
   get "/about", to: "about#index"
