@@ -4,7 +4,8 @@ class ProductsController < ApplicationController
   #   @products = Product.where("brand LIKE '%colourpop%'")
   # end
   def index
-    @products = Product.page params[:page]
+    @products = Product.all
+    @products = @products.limit(10).page(params[:page])
   end
   def show
     @product = Product.find(params[:id])
