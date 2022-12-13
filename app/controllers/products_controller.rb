@@ -5,7 +5,6 @@ class ProductsController < ApplicationController
   # end
   def index
     @products = Product.all
-    @products = @products.limit(10).page(params[:page])
   end
   def show
     @product = Product.find(params[:id])

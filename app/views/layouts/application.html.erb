@@ -19,12 +19,28 @@
   <a href="/">Home</a>
   <a href="/about">About</a>
   <a href="/products">Products</a>
+  <%= debug session[:shopping_cart] %>
 </nav>
+    <% if flash[:notice] %>
+      <p>
+        <%= flash[:notice]%>
+      </p>
+    <% end %>
 <%= form_with(url: search_products_path, method: :get, local: true) do %>
   <p>Which Product Would You Like To Find?</p>
   <%= text_field_tag(:words, nil, class: "input", placeholder: "Product Name Here!") %>
   <%= submit_tag("Search", class: "button is-primary") %>
 <% end %>
+
+<%# <%= select_tag "product_type", options_from_collection_for_select(ProductType.all, "id", "product_type") %>
+
+<%= form_tag(@product_type, method: :get) do %>
+    <%= collection_select :product_type, :id, ProductType.all.order('product_type ASC'), :id, :product_type,{include_blank: 'Select Category'} %>
+    <%= submit_tag 'Search', product_type: nil %>
+<% end %>
+
+<h2>Featured Items: Colourpop</h2>
+
     <%=yield %>
   </body>
 </html>
