@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/products", to: "products#index"
   get "/about", to: "about#index"
   resources :cart, only: %i[create destroy]
+  resources :checkout, only:[:create]
   resources :products, only: [:index, :show] do
     collection do
       get "search"

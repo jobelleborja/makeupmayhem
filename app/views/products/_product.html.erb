@@ -1,15 +1,10 @@
-<%# <%= paginate @products %>
-<div class="columns">
-  <div class="column">
+<div class="row">
+  <div class="col">
     <%= form_with url: cart_index_path, method: :post do %>
       <ul><img src="<%=product.image_link%>" width="100px" onerror="this.src='https://www.schoolonlineuniversity.com/uploads/thumbnails/course_thumbnails/16.jpg'">
       <h3><%= link_to product.name, product %></h3>
-      <p>Price: <%= product.price %></p>
-      <p><%= product.description %></p>
+      <p>Price: <%= product.price %>.00</p>
     <% end %>
-  </div>
-</div>
-
 
           <% if cart.include?(product) %>
         <%= button_to cart_path(product), method: :delete do%>
@@ -21,3 +16,6 @@
           <%= button_tag 'Add to cart ✅' %>
         <% end %>
       <% end %>
+  </div>
+  </div>
+

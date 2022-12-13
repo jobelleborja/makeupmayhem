@@ -1,3 +1,5 @@
-<section>
-<%=render @products%>
-</section>
+<%= paginate @products%>
+<div class="columns">
+  <%=render @products%>
+</div>
+
