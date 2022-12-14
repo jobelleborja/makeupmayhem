@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_session
-    # will initialize the visit count to zero for new users\
+    # will initialize the visit count to zero for new users
     session[:shopping_cart] ||= [] # empty array of product IDs
   end
 <<<<<<< HEAD

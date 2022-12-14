@@ -1,81 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-<<<<<<< HEAD
-  <title>Animal Crossing!</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-<div class="jumbotron text-center">
-  <h1>Makeup Mayhem</h1>
-  <p>Are you ready to kickstart your cosmetic journey?</p>
-</div>
-<nav>
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-</nav>
-<<<<<<< Updated upstream
-    <%= yield %>
-=======
-=======
   <title>MM 2022</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-
-
 <body>
 <div class="jumbotron text-center">
   <h1>Makeup Mayhem</h1>
   <p>Welcome to your cosmetic journey.</p>
 </div>
 <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Makeup Mayhem 2022</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<nav>
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-  <a href="/products">Products</a>
-
-  <%= debug session[:shopping_cart] %>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">About</a>
+      </li>
+            <li class="nav-item">
+        <a class="nav-link" href="/products">Products</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
 </nav>
->>>>>>> ActiveAdmin
-    <% if flash[:notice] %>
-      <p>
-        <%= flash[:notice]%>
-      </p>
-    <% end %>
-<%= form_with(url: search_products_path, method: :get, local: true) do %>
-  <p>Which Product Would You Like To Find?</p>
-  <%= text_field_tag(:words, nil, class: "input", placeholder: "Product Name Here!") %>
-<<<<<<< HEAD
-    <%= collection_select(:name, :product_type_id, ProductType.all.order("product_type"), :id, :product_type, prompt: '-- Filter Type --') %>
-    <%= submit_tag("Search", class: "button is-primary") %>
-<% end %>
-    <%=yield %>
+    <%=yield%>
 </div>
->>>>>>> Stashed changes
-=======
-  <%= submit_tag("Search", class: "button is-primary") %>
-<% end %>
-
-<%# <%= select_tag "product_type", options_from_collection_for_select(ProductType.all, "id", "product_type") %>
-
-<%= form_tag(@product_type, method: :get) do %>
-    <%= collection_select :product_type, :id, ProductType.all.order('product_type ASC'), :id, :product_type,{include_blank: 'Select Category'} %>
-    <%= submit_tag 'Search', product_type: nil %>
-<% end %>
-
-<h2>Featured Items: Colourpop</h2>
-    <%=yield %>
-
-</div>
->>>>>>> ActiveAdmin
   </body>
 </html>

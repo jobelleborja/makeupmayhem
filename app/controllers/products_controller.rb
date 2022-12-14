@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-class ProductsController < ApplicationController
-  def index
-    @products = Product.all
-  end
-  def show
-    @products = Product.find(params[:id])
-  end
-  def search
-    search = "%#{params[:words]}%"
-    @products = Product.where("title LIKE ?", search)
-=======
 
 class ProductsController < ApplicationController
   # def index
@@ -23,7 +11,13 @@ class ProductsController < ApplicationController
   end
   def search
     search = "%#{params[:words]}%"
+    category = "%#{params[:product_type]}%"
+
+    if search == ""
     @products = Product.where("name LIKE ?", search)
->>>>>>> ActiveAdmin
+  #  else
+  #   @products = Product.where("name LIKE ? AND product_type LIKE ?", search, category)
+   end
   end
+
 end
