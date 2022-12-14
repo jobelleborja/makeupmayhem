@@ -11,13 +11,6 @@ class ProductsController < ApplicationController
   end
   def search
     search = "%#{params[:words]}%"
-    category = "%#{params[:product_type]}%"
-
-    if search == ""
     @products = Product.where("name LIKE ?", search)
-  #  else
-  #   @products = Product.where("name LIKE ? AND product_type LIKE ?", search, category)
-   end
   end
-
 end
