@@ -18,6 +18,22 @@
   <a href="/">Home</a>
   <a href="/about">About</a>
 </nav>
+<<<<<<< Updated upstream
     <%= yield %>
+=======
+    <% if flash[:notice] %>
+      <p>
+        <%= flash[:notice]%>
+      </p>
+    <% end %>
+<%= form_with(url: search_products_path, method: :get, local: true) do %>
+  <p>Which Product Would You Like To Find?</p>
+  <%= text_field_tag(:words, nil, class: "input", placeholder: "Product Name Here!") %>
+    <%= collection_select(:name, :product_type_id, ProductType.all.order("product_type"), :id, :product_type, prompt: '-- Filter Type --') %>
+    <%= submit_tag("Search", class: "button is-primary") %>
+<% end %>
+    <%=yield %>
+</div>
+>>>>>>> Stashed changes
   </body>
 </html>
