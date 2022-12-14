@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 <ol>
 <% @products.each do |product|%>
 <li><%= link_to product.name, product%> is a villager.</li>
 <% end %>
 </ol>
+=======
+<%= paginate @products%>
+<div class="columns">
+  <%=render @products%>
+</div>
+
+>>>>>>> ActiveAdmin

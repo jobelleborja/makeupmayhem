@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> ActiveAdmin
   before_action :initialize_session
   helper_method :cart
 
@@ -15,6 +18,7 @@ class ApplicationController < ActionController::Base
     # will initialize the visit count to zero for new users\
     session[:shopping_cart] ||= [] # empty array of product IDs
   end
+<<<<<<< HEAD
 
   def load_cart
     # @cart = Product.find(session[:cart])
@@ -24,4 +28,6 @@ class ApplicationController < ActionController::Base
     @cart = Product.where(id: session[:cart])
   end
 >>>>>>> Stashed changes
+=======
+>>>>>>> ActiveAdmin
 end

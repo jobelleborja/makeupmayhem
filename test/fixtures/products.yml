@@ -1,7 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  price: 1
+  brand: MyString
+  order: one
+  product_type: one
 
 two:
-  name: MyString
+  price: 1
+  brand: MyString
+  order: two
+  product_type: two
