@@ -8,28 +8,28 @@ class CheckoutController < ApplicationController
     end
 
     product = Stripe::Product.create({
-      name: product.name,
-      description: product.description,
-    })
+                                       name:        product.name,
+                                       description: product.description
+                                     })
 
     price = Stripe::Price.create({
-      product: product.id,
-      unit_amount: 2000,
-      currency: 'cad',
-    })
+                                   product:     product.id,
+                                   unit_amount: 2000,
+                                   currency:    "cad"
+                                 })
 
     session = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      line_items: [{
-        name: product.name,
+      payment_method_types: ["card"],
+      line_items:           [{
+        name:        product.name,
         description: product.description,
         unit_amount: 2000,
-        currency: 'cad',
-        price: price.id,
-        }],
-      mode: 'payment',
-      success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'https://example.com/cancel',
+        currency:    "cad",
+        price:       price.id
+      }],
+      mode:                 "payment",
+      success_url:          "https://example.com/success?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url:           "https://example.com/cancel"
     )
 
     respond_to do |format|

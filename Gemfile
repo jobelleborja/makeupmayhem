@@ -40,7 +40,8 @@ gem 'stripe'
 
 gem 'webpacker', '~> 3.0'
 
-
+gem 'rubocop'
+gem 'rubocop-rails'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
