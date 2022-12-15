@@ -23,25 +23,18 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/about">About</a>
-      </li>
-    </ul>
-<form class="form-inline my-2 my-lg-0">
-      <%= form_with(url: search_products_path, method: :get, local: true) do %>
-      <%= text_field_tag(:words, nil, class: "input", placeholder: "Search for Products..") %>
-      <%= collection_select :product_type, :product_type_id, ProductType.all.order('product_type ASC'), :id, :product_type,{include_blank: 'Select Category'} %>
-      <%= submit_tag("Search", class: "button is-primary") %>
-<% end %>
-      </form>
+  <%=render "layouts/nav"%>
+  <ol>
+   <%=render_breadcrumbs :tag => :li, :separator => " | "%>
+  </ol>
 
-  </div>
-</nav>
+
+      <%= form_with(url: search_products_path, method: :get, local: true, role: "search") do %>
+        <%= text_field_tag(:words, nil, class: "input", placeholder: "Search for Products..") %>
+        <%= collection_select(:name, :product_type_id, ProductType.all.order('product_type ASC'), :id, :product_type,{include_blank: 'Select Category'}) %>
+        <%= submit_tag("Search", class: "button is-primary") %>
+      <% end %>
+
 
   <% if cart.present? %>
   <h1>Cart - <%= cart.size %></h1>

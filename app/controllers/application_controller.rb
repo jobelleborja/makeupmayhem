@@ -3,6 +3,7 @@
 # holds sesssions for class
 
 class ApplicationController < ActionController::Base
+  add_breadcrumb "home", :root_path
   protect_from_forgery with: :null_session
   before_action :initialize_session
   helper_method :cart

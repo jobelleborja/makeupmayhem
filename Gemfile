@@ -43,6 +43,8 @@ gem 'webpacker', '~> 3.0'
 gem 'rubocop'
 gem 'rubocop-rails'
 
+gem "breadcrumbs_on_rails"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

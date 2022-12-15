@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  get "/type", to: "type#index"
+  get "/product_type", to: "product_type#index"
   get "/products", to: "products#index"
   get "/about", to: "about#index"
   resources :cart, only: %i[create destroy]
+  resources :product_type, only: [:index]
   resources :products, only: [:index, :show] do
     collection do
       get "search"

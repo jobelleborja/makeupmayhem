@@ -6,13 +6,20 @@ class ProductsController < ApplicationController
   end
 
   def show
+    add_breadcrumb "Product Type", :product_type_path
+    add_breadcrumb @product_type.product_type, "product_type/#{@product.product_type_id}"
+    add_breadcrumb @product.name, :product_path
     @product = Product.find(params[:id])
   end
 
   def search
     search = "%#{params[:words]}%"
-    # filter = "%#{params[:type]}%"
-    @products = Product.where("name LIKE :search AND product_type LIKE :search",
-                              search: "%#{search}%")
+
+    @products = if params[:name][:product_type_id] == ""
+      Product.where("name LIKE ?", search)
+    else
+    Product.where("name LIKE ? AND product_type_id = ?",
+                              search, params[:name][:product_type_id])
+    end
   end
 end
