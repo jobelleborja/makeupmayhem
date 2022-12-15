@@ -1,7 +1,6 @@
+# frozen_string_literal: true
+
 class ProductsController < ApplicationController
-  # def index
-  #   @products = Product.where("brand LIKE '%colourpop%'")
-  # end
   def index
     @products = Product.order("price DESC").page params[:page]
   end
@@ -12,7 +11,7 @@ class ProductsController < ApplicationController
 
   def search
     search = "%#{params[:words]}%"
-    filter = "%#{params[:type]}%"
+    # filter = "%#{params[:type]}%"
     @products = Product.where("name LIKE :search AND product_type LIKE :search",
                               search: "%#{search}%")
   end

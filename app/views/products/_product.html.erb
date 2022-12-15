@@ -2,7 +2,7 @@
   <div class="col">
 
     <%= form_with url: cart_index_path, method: :post do %>
-      <img src="<%=product.image_link%>" width="100px" onerror="this.src='https://www.schoolonlineuniversity.com/uploads/thumbnails/course_thumbnails/16.jpg'">
+      <img src="<%=product.image_link%>" alt="<%=product.name%>" style="width: 100px" onerror="this.src='https://www.schoolonlineuniversity.com/uploads/thumbnails/course_thumbnails/16.jpg'">
       <h3><%= link_to product.name, product %></h3>
       <p>Price: <%= product.price %>.00</p>
 

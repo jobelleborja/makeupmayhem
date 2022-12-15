@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "open-uri"
 Product.destroy_all
 ProductType.destroy_all
@@ -16,9 +18,9 @@ products.each do |product|
     product_type: product["product_type"]
   )
 
-  next unless product_type && product_type.valid?
+  next unless product_type&.valid?
 
-  create_product = product_type.products.create(
+  product_type.products.create(
     name:        product["name"],
     description: product["description"],
     price:       product["price"],
@@ -28,8 +30,8 @@ products.each do |product|
   i += 1
 end
 
-puts "#{Product.count} products"
-puts "#{ProductType.count} types"
+Rails.logger.debug "#{Product.count} products"
+Rails.logger.debug "#{ProductType.count} types"
 
 if Rails.env.development?
   AdminUser.create!(email: "admin@example.com", password: "password",
