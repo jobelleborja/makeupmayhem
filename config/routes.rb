@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'success', to: 'checkout#success', as: 'checkout_success'
   end
   root "products#index"
+  devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
