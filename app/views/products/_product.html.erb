@@ -1,12 +1,13 @@
 <div class="row">
   <div class="col">
+
     <%= form_with url: cart_index_path, method: :post do %>
       <ul><img src="<%=product.image_link%>" width="100px" onerror="this.src='https://www.schoolonlineuniversity.com/uploads/thumbnails/course_thumbnails/16.jpg'">
       <h3><%= link_to product.name, product %></h3>
       <p>Price: <%= product.price %>.00</p>
-        <%= button_to "buy now!", checkout_create_path, method: :post, params: { id: product.id }, remote: true %>
-    <% end %>
 
+    <% end %>
+        <%= button_to "buy now!", checkout_create_path, method: :post, params: { id: product.id }, remote: true %>
           <% if cart.include?(product) %>
         <%= button_to cart_path(product), method: :delete do%>
           ➖ Remove From cart

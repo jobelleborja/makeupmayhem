@@ -2,45 +2,37 @@ class CheckoutController < ApplicationController
   def create
     product = Product.find(params[:id])
 
-    respond_to do |format|
-      format.js {render layout: false}
-    end
-
     if product.nil?
       redirect_to root_path
       return
     end
-
-    @session = Stripe::Checkout::Session.create(
+    session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
-      line_items: [
-        {
-          name: product.name,
-          description: product.description,
-          amount: product.price_cents,
-          currency: 'cad',
-          quantity: 1
+      line_items: [{
+        name: 'T-shirt',
+        description: 'Comfortable cotton t-shirt',
+        images: ['https://example.com/t-shirt.png'],
+        amount: 2000,
+        currency: 'usd',
+        price_data: {
+          currency: 'usd',
+          unit_amount: 2000,
+          product_data: {
+            name: 'T-shirt',
+            description: 'Comfortable cotton t-shirt',
+            images: ['https://example.com/t-shirt.png'],
+          },
         },
-        {
-          name: 'PST',
-          description: 'Manitoba Provincial Sales Tax',
-          amount: (product.price_cents * 7 / 100.0).round.to_i,
-          currency: 'cad',
-          quantity: 1
-        },
-        {
-          name: 'GST',
-          description: 'Federal Goods and Services Tax',
-          amount: (product.price_cents * 5 / 100.0).round.to_i,
-          currency: 'cad',
-          quantity: 1
-        }
-      ],
-      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: checkout_cancel_url
+        quantity: 1,
+      }],
+      mode: 'payment',
+      success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'https://example.com/cancel',
     )
 
-
+    respond_to do |format|
+      format.js # renders create.js.erb
+    end
   end
 
   def success
