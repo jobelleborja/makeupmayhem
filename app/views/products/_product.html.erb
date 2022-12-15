@@ -4,6 +4,7 @@
       <ul><img src="<%=product.image_link%>" width="100px" onerror="this.src='https://www.schoolonlineuniversity.com/uploads/thumbnails/course_thumbnails/16.jpg'">
       <h3><%= link_to product.name, product %></h3>
       <p>Price: <%= product.price %>.00</p>
+        <%= button_to "buy now!", checkout_create_path, method: :post, params: { id: product.id }, remote: true %>
     <% end %>
 
           <% if cart.include?(product) %>

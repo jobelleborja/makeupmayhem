@@ -1,17 +1,50 @@
 class CheckoutController < ApplicationController
   def create
-    @session = Stripe::Checkout::Session.create({
-      mode: 'payment',
+    product = Product.find(params[:id])
+
+    respond_to do |format|
+      format.js {render layout: false}
+    end
+
+    if product.nil?
+      redirect_to root_path
+      return
+    end
+
+    @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
-      line_items: [{
-        name: product.name,
-        amount: product.price,
-        currency: "cad",
-        qty: 1
-        }],
-        mode: 'payment',
-        success_url: 'https://example.com/success',
-        cancel_url: 'https://example.com/cancel',
-      })
+      line_items: [
+        {
+          name: product.name,
+          description: product.description,
+          amount: product.price_cents,
+          currency: 'cad',
+          quantity: 1
+        },
+        {
+          name: 'PST',
+          description: 'Manitoba Provincial Sales Tax',
+          amount: (product.price_cents * 7 / 100.0).round.to_i,
+          currency: 'cad',
+          quantity: 1
+        },
+        {
+          name: 'GST',
+          description: 'Federal Goods and Services Tax',
+          amount: (product.price_cents * 5 / 100.0).round.to_i,
+          currency: 'cad',
+          quantity: 1
+        }
+      ],
+      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: checkout_cancel_url
+    )
+
+
+  end
+
+  def success
+    @session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
   end
 end
